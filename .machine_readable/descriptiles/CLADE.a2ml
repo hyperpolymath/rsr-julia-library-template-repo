@@ -3,24 +3,24 @@
 # See: https://github.com/hyperpolymath/gv-clade-index
 
 [identity]
-uuid = "a5ea1382-a34c-5334-8a46-a2ebe904c810"
+uuid = "4b68a627-5811-4c73-bdad-052dfbdbbe90"
 primary-forge = "github"
 primary-owner = "hyperpolymath"
-canonical-name = "rsr-template-repo"
-prefixed-name = "rm-rsr-template-repo"
+canonical-name = "rsr-julia-library-template-repo"
+prefixed-name = "rm-rsr-julia-library-template-repo"
 
 [clade]
 primary = "rm"
 secondary = ["gv"]
-assigned = "2026-03-16"
-rationale = ""
+assigned = "2026-07-01"
+rationale = "Julia-specialised sibling of rsr-template-repo — same rm/gv clade."
 
 [forges]
-github = "hyperpolymath/rsr-template-repo"
-gitlab = "hyperpolymath/rsr-template-repo"
-bitbucket = "hyperpolymath/rsr-template-repo"
+github = "hyperpolymath/rsr-julia-library-template-repo"
+gitlab = "hyperpolymath/rsr-julia-library-template-repo"
+bitbucket = "hyperpolymath/rsr-julia-library-template-repo"
 
 [lineage]
-type = "standalone"
-parent = "RSR template — scaffold for new repos"
-born = "2026-03-16"
+type = "derived"
+parent = "rsr-template-repo (RSR canonical template)"
+born = "2026-07-01"

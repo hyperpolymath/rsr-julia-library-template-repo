@@ -1,33 +1,38 @@
 # SPDX-License-Identifier: MPL-2.0
 # ECOSYSTEM.a2ml — Ecosystem position (META-TEMPLATE)
 #
-# This is the ECOSYSTEM file for rsr-template-repo itself. It records the
-# TEMPLATE's own position in the estate. When consumed by a new project,
-# replace these fields with the target project's ecosystem position and
-# related projects (see the NOTE FOR CONSUMERS at the bottom).
+# This is the ECOSYSTEM file for rsr-julia-library-template-repo itself. It
+# records the TEMPLATE's own position in the estate. When consumed by a new
+# Julia library project, replace these fields with the target project's
+# ecosystem position and related projects (see the NOTE FOR CONSUMERS at the
+# bottom).
 
 [metadata]
-project = "rsr-template-repo"
+project = "rsr-julia-library-template-repo"
 ecosystem = "hyperpolymath"
 
 [position]
 type = "repository-template"
-purpose = "Canonical RSR-compliant repository template: scaffolding (CI/CD, AI manifests, ABI/FFI standards, container ecosystem, governance) that new hyperpolymath projects are instantiated from."
+purpose = "RSR-compliant repository template specialised for registered Julia libraries: Project.toml [compat] closure, Aqua+JET quality gates, Documenter docs, and the flagship-rubric.adoc measuring-stick, on top of the generic rsr-template-repo scaffolding (CI/CD, AI manifests, governance)."
 # IS-NOT — anti-identity (the boundary-erosion guard; each line is a real past confusion)
 what-this-is-not = [
-  "a project in its own right",
-  "Scaffoldia (the full-featured repo designer)",
-  "standards (the canon source this template operationalises)",
+  "a Julia project in its own right — Widget.jl is a throwaway example package, not a real library",
+  "rsr-template-repo (the generic, language-agnostic template this derives from)",
+  "the julia-professional-registry (where a finished library gets registered, not templated)",
+  "Axiom.jl (the flagship *reference instance* the rubric is measured against, not the template)",
 ]
 
 [pipeline]
 position = "foundation"
-chain = "standards → rsr-template-repo → (every estate repo)"
-notes = "rsr-template-repo turns the RSR standard into runnable scaffolding. New repos are created from it via `just init`, which substitutes the {{PLACEHOLDER}} tokens."
+chain = "standards → rsr-template-repo → rsr-julia-library-template-repo → (every estate Julia library)"
+notes = "Julia-specialised sibling of rsr-template-repo. New Julia library repos are created from it, substituting the {{PLACEHOLDER}} tokens and renaming the Widget example package."
 coordination = "standards"
 
 [related-projects]
 projects = [
+  { name = "rsr-template-repo", relationship = "parent-template", notes = "The generic, language-agnostic RSR template this repo specialises for Julia." },
+  { name = "Axiom.jl", relationship = "reference-instance", notes = "The flagship — 100% on docs/flagship-rubric.adoc; every Julia library instantiated from this template is scored against it." },
+  { name = "julia-professional-registry", relationship = "registration-target", notes = "The hyperpolymath Julia package registry a library instantiated from this template registers into once ready." },
   { name = "standards", relationship = "standard-source", notes = "Defines the RSR standard, contractile canon, and policies that this template operationalises." },
   { name = "stapeln", relationship = "build-tooling", notes = "Layer-based container build system; the template ships stapeln.toml scaffolding." },
   { name = "selur-compose", relationship = "build-tooling", notes = "Service composition; the template ships selur-compose.toml scaffolding." },
@@ -38,8 +43,8 @@ projects = [
 ]
 
 # ---------------------------------------------------------------------------
-# NOTE FOR CONSUMERS: When using this template to create a new repo, replace
-# the project/purpose above and rewrite [related-projects] to describe YOUR
-# project's actual ecosystem. The entries above describe the TEMPLATE's own
-# position, not yours.
+# NOTE FOR CONSUMERS: When using this template to create a new Julia library
+# repo, replace the project/purpose above and rewrite [related-projects] to
+# describe YOUR project's actual ecosystem. The entries above describe the
+# TEMPLATE's own position, not yours.
 # ---------------------------------------------------------------------------

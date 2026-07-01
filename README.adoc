@@ -32,6 +32,18 @@ token with your project's details, then delete this admonition. Until you do, th
 `{{...}}` markers below are intentional placeholders, not content.
 ====
 
+[NOTE]
+====
+*This is the Julia-library variant.* `rsr-julia-library-template-repo` is a
+sibling of the generic `rsr-template-repo`, with the Rust-primary CI dropped
+and Julia scaffolding added: `Project.toml` (closed `[compat]`), `src/Widget.jl`
+(rename this — it's a throwaway example, not a real package), `test/runtests.jl`
++ `test/aqua.jl` + `test/jet.jl`, and Documenter docs (`docs/make.jl`). Every
+library instantiated from this template is measured against
+`docs/flagship-rubric.adoc`, the same rubric `Axiom.jl` scores 100% on as the
+estate's flagship reference instance.
+====
+
 == What this is
 
 A new repository scaffolded from the *Rhodium Standard Repository (RSR)* template:

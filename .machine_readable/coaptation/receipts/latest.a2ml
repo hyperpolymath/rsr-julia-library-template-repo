@@ -5,7 +5,7 @@
 
 [receipt]
 schema = "hyperpolymath.coaptation/1"
-repo = "rsr-template-repo"
+repo = "rsr-julia-library-template-repo"
 band = "amber"
 proposed-action = "advisory — soft drift within bands (posture/intend). Open an advisory issue; no re-anchor."
 
@@ -96,5 +96,5 @@ bust.sync-drift-between-repos = latent
 bust.contractile-parse-error = latent
 
 [provenance]
-contractiles = "intend@b5248bb14c9b must@deb0cb5de0b2 trust@76884f439a88 adjust@8faad9ca0650 dust@8ce4f3c1efa0 bust@dd6a53e1fc9b"
-descriptiles = "clade@b974798d108a state@9fbef88c72f8 ecosystem@1c30abd8f618 agentic@d72859864bbe anchor@8b66b03d7736"
+contractiles = "intend@a58bfc86a653 must@946dfdaf9e17 trust@cc35bafd4f78 adjust@56ebb2c8e3e6 dust@0b58a626f27a bust@f7fc1b6317d4"
+descriptiles = "clade@4f786e441589 state@c1cae4c08c6a ecosystem@5b1079efc01e agentic@d72859864bbe anchor@8b66b03d7736"
