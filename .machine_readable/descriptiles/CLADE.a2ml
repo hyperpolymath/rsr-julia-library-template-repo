@@ -21,6 +21,6 @@ gitlab = "hyperpolymath/rsr-julia-library-template-repo"
 bitbucket = "hyperpolymath/rsr-julia-library-template-repo"
 
 [lineage]
-type = "derived"
+type = "standalone"
 parent = "rsr-template-repo (RSR canonical template)"
 born = "2026-07-01"
