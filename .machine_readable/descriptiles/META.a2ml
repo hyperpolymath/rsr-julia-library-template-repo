@@ -9,14 +9,18 @@ version = "0.1.0"
 last-updated = "2026-04-11"
 
 [project-info]
-type = "library"  # TODO: update type (library|binary|service|website|monorepo)  # library | binary | monorepo | service | website
-languages = []             # e.g. ["rust", "zig", "idris2"]
+type = "library"  # library | binary | monorepo | service | website
+languages = ["julia"]
 license = "MPL-2.0"
 author = "Jonathan D.A. Jewell (hyperpolymath)"
 
 [architecture-decisions]
 # ADR format: status = proposed | accepted | deprecated | superseded | rejected
-# - { id = "ADR-001", title = "Use Zig for FFI", status = "accepted", date = "2026-02-14" }
+decisions = [
+  { id = "ADR-001", title = "Julia as primary language, Widget.jl throwaway example package", status = "accepted", date = "2026-07-01" },
+  { id = "ADR-002", title = "Aqua+JET wired into Pkg.test() via test/aqua.jl + test/jet.jl, not a separate CI step", status = "accepted", date = "2026-07-01" },
+  { id = "ADR-003", title = "docs/flagship-rubric.adoc is the measuring-stick; Axiom.jl is the flagship reference instance", status = "accepted", date = "2026-07-01" },
+]
 
 [development-practices]
 build-tool = "just"

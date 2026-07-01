@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: MPL-2.0
+[deps]
+Widget = "a5785abd-8e18-4546-83d8-78d24a57d685"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[compat]
+Documenter = "1"
+julia = "1.10"
