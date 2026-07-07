@@ -100,7 +100,9 @@ across the tree, validates the result, and (if available) runs the `k9-svc` chec
 | `docs/`                   | Onboarding, status, governance, practice, decisions.
 | `build/`, `Justfile`      | Task orchestration (`just` phases delegate to `build/just/*.just`).
 | `.github/`                | Workflows + community health files.
-| `tests/`, `benches/`      | Test suites and benchmarks.
+| `test/`                   | Julia Pkg test harness (`runtests.jl`, Aqua, JET) — what `Pkg.test()` runs.
+| `tests/`, `benches/`      | RSR shell test suites (e2e, fuzz, workflow validation) and benchmarks — inherited estate harness, deliberately distinct from Julia's `test/`.
+| `.machine_readable/descriptiles/VARIANT.a2ml` | Variant contract: how this template relates to `rsr-template-repo` (parent pin + declared path divergences, enforced by the Variant Drift Gate).
 |===
 
 == Where to go next

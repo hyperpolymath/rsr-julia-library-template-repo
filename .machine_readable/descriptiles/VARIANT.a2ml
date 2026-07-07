@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# VARIANT.a2ml — variant contract (first instance of the RSR variant-contract
+# pattern, ratified 2026-07-07).
+#
+# Declares how this variant template relates to its parent so that
+# (a) the drift gate (scripts/check-variant-drift.sh) can verify the shared
+#     RSR spine stays convergent with the parent at the pinned commit, and
+# (b) composition tooling (scaffoldia) can consume the variant as data.
+#
+# The contract is direction-agnostic: today the parent is the source and this
+# repo is a hand-maintained specialisation; after the scaffoldia inversion the
+# same lists describe how to REGENERATE this repo from core + variant pack.
+#
+# Path lists are verified against the parent at `parent-pin`. Anything tracked
+# here that is not listed below MUST be identical to the parent at the pin,
+# modulo the normalisations declared in [normalise].
+
+[metadata]
+project = "rsr-julia-library-template-repo"
+schema_version = "0.1.0"
+last-updated = "2026-07-07"
+
+[variant]
+parent = "hyperpolymath/rsr-template-repo"
+parent-pin = "8b7e3b5383603ed25b1c0ee269322bfe0ff76d6c"  # last reconciled parent commit
+role = "language-variant"      # spine divergence: build system + test/docs toolchain
+stack = "julia"
+direction = "template-is-source"  # becomes "generated-from-core" after scaffoldia inversion
+
+[normalise]
+# Differences erased before spine comparison (per-repo operational state,
+# not spine content):
+#   action-pins  — 40-hex action/reusable pin SHAs (dependabot cadence differs per repo)
+#   self-name    — this repo's name where the parent uses its own
+rules = "action-pins self-name"
+
+[paths.added]
+# Julia-variant additions (Julia General registry mandates Project.toml and
+# test/ at the package root of a standalone repository — see EXPLAINME.adoc).
+paths = [
+  "Project.toml",
+  "test/",
+  "src/Widget.jl",
+  "docs/make.jl",
+  "docs/Project.toml",
+  "docs/src/",
+  "docs/flagship-rubric.adoc",
+  ".github/workflows/julia-test.yml",
+  ".github/workflows/documentation.yml",
+  "REPO-STANDARD-MUST-INTEND-LIKE.adoc",
+]
+
+[paths.removed]
+# Present in the parent, deliberately absent here.
+paths = [
+  ".github/workflows/rust-ci.yml",
+]
+
+[paths.diverged]
+# Permanently variant-owned content; never expected to match the parent.
+paths = [
+  "README.adoc",                                        # Julia badges/quickstart
+  "CLAUDE.md",                                          # Julia-tailored agent guidance
+  ".gitignore",                                         # + /docs/Manifest.toml
+  ".machine_readable/root-allow.txt",                   # + Julia root entries
+  ".machine_readable/descriptiles/CLADE.a2ml",          # self-identity + lineage
+  ".machine_readable/descriptiles/STATE.a2ml",          # self-state
+  ".machine_readable/descriptiles/META.a2ml",           # self-identity
+  ".machine_readable/descriptiles/ECOSYSTEM.a2ml",      # self-position
+  ".machine_readable/descriptiles/VARIANT.a2ml",        # this contract
+  ".machine_readable/contractiles/bust/Bustfile.a2ml",  # variant-identity prose
+  ".machine_readable/contractiles/dust/Dustfile.a2ml",
+  ".machine_readable/contractiles/intend/Intentfile.a2ml",
+  ".machine_readable/contractiles/must/Mustfile.a2ml",
+  ".machine_readable/contractiles/trust/Trustfile.a2ml",
+  ".github/workflows/variant-drift-gate.yml",           # variant-only gate
+  "scripts/check-variant-drift.sh",                     # variant-only gate
+]
+
+[paths.diverged-pending-upstream]
+# Fixes made here first (parent CI was red and could not catch them).
+# Phase-2 worklist: promote to rsr-template-repo via the change-lab, then
+# move these entries out of this list so the files re-converge.
+paths = [
+  ".github/workflows/boj-build.yml",                    # secrets-in-job-if fix
+  "container/stapeln/deploy.k9.ncl",                    # K9 magic + pedigree name
+  "coordination.k9",                                    # K9 magic + pedigree
+  "session/custom-checks.k9",                           # K9 magic + pedigree
+  ".machine_readable/arrival-pack/claude-md.k9.ncl",    # K9 magic
+  ".machine_readable/coaptation/coapt.k9.ncl",          # K9 magic
+  ".machine_readable/contractiles/adjust/adjust.k9.ncl",# K9 magic
+  ".machine_readable/contractiles/bust/bust.k9.ncl",    # K9 magic + signature_required
+  ".machine_readable/contractiles/dust/dust.k9.ncl",    # K9 magic
+  ".machine_readable/contractiles/intend/intend.k9.ncl",# K9 magic + signature_required
+  ".machine_readable/contractiles/must/must.k9.ncl",    # K9 magic + signature_required
+  ".machine_readable/contractiles/trust/trust.k9.ncl",  # K9 magic + signature_required
+  ".machine_readable/self-validating/methodology-guard.k9.ncl",  # K9 magic + pedigree
+]
+
+[paths.operational-state]
+# Per-repo runtime records; excluded from spine comparison entirely.
+paths = [
+  ".machine_readable/coaptation/receipts/latest.a2ml",  # coaptation content hashes
+]

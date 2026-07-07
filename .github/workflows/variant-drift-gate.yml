@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: MPL-2.0
+#
+# Variant Drift Gate — verifies the shared RSR spine of this variant template
+# stays convergent with its parent (rsr-template-repo) at the commit pinned in
+# .machine_readable/descriptiles/VARIANT.a2ml.
+#
+# Bumping the pin after reconciling with a newer parent commit is the
+# "template maintenance" sync operation. No paths: filter by estate rule
+# (required checks must always report).
+name: Variant Drift Gate
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '17 6 * * 1' # weekly, Monday 06:17 UTC
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  drift:
+    name: Spine convergence vs parent pin
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout variant (self)
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Read parent + pin from VARIANT.a2ml
+        id: contract
+        run: |
+          set -euo pipefail
+          contract=".machine_readable/descriptiles/VARIANT.a2ml"
+          parent=$(sed -n 's/^parent = "\(.*\)"/\1/p' "$contract" | head -1)
+          pin=$(sed -n 's/^parent-pin = "\([0-9a-f]*\)".*/\1/p' "$contract" | head -1)
+          [ -n "$parent" ] && [ -n "$pin" ] || { echo "::error::VARIANT.a2ml missing parent or parent-pin"; exit 1; }
+          echo "parent=$parent" >> "$GITHUB_OUTPUT"
+          echo "pin=$pin" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout parent at pin
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          repository: ${{ steps.contract.outputs.parent }}
+          ref: ${{ steps.contract.outputs.pin }}
+          path: .variant-parent
+
+      - name: Check spine convergence
+        run: |
+          set -euo pipefail
+          bash scripts/check-variant-drift.sh .variant-parent .
