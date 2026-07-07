@@ -77,6 +77,7 @@ paths = [
   ".machine_readable/contractiles/trust/Trustfile.a2ml",
   ".github/workflows/variant-drift-gate.yml",           # variant-only gate
   "scripts/check-variant-drift.sh",                     # variant-only gate
+  "scripts/check-no-md-in-docs.sh",                     # docs/src/ exemption: Documenter is Markdown-only
 ]
 
 [paths.diverged-pending-upstream]
@@ -85,6 +86,10 @@ paths = [
 # move these entries out of this list so the files re-converge.
 paths = [
   ".github/workflows/boj-build.yml",                    # secrets-in-job-if fix
+  ".github/workflows/governance.yml",                   # timeout-minutes invalid on reusable-call job
+  ".github/workflows/hypatia-scan.yml",                 # timeout-minutes invalid on reusable-call job
+  ".github/workflows/mirror.yml",                       # timeout-minutes invalid on reusable-call job
+  ".github/workflows/secret-scanner.yml",               # timeout-minutes invalid on reusable-call job
   "container/stapeln/deploy.k9.ncl",                    # K9 magic + pedigree name
   "coordination.k9",                                    # K9 magic + pedigree
   "session/custom-checks.k9",                           # K9 magic + pedigree
