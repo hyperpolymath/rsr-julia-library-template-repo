@@ -24,3 +24,6 @@ bitbucket = "hyperpolymath/rsr-julia-library-template-repo"
 type = "standalone"
 parent = "rsr-template-repo (RSR canonical template)"
 born = "2026-07-01"
+# Operational mechanics of the parent relationship (pin, path divergences)
+# live in the variant contract, not here — CLADE stays identity-only.
+variant-contract = ".machine_readable/descriptiles/VARIANT.a2ml"
