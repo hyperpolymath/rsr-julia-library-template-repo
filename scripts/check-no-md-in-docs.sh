@@ -22,8 +22,12 @@ set -euo pipefail
 REPO_ROOT="${1:-.}"
 DOCS_DIR="$REPO_ROOT/docs"
 
-# Justified exceptions, relative to repo root. Empty by default.
-ALLOWED=()
+# Justified exceptions, relative to repo root. Entries ending in "/" are
+# directory prefixes.
+# docs/src/ — Julia variant: Documenter.jl sources are Markdown by toolchain
+# requirement (Documenter has no AsciiDoc input); the AsciiDoc-by-default rule
+# keeps applying to everything else under docs/.
+ALLOWED=("docs/src/")
 
 if [ ! -d "$DOCS_DIR" ]; then
     echo "PASS: no docs/ directory (nothing to check)"
@@ -37,7 +41,10 @@ for hit in "${HITS[@]}"; do
     rel="${hit#"$REPO_ROOT/"}"
     skip=0
     for allowed in "${ALLOWED[@]}"; do
-        if [ "$rel" = "$allowed" ]; then skip=1; break; fi
+        case "$allowed" in
+            */) case "$rel" in "$allowed"*) skip=1; break;; esac ;;
+            *)  if [ "$rel" = "$allowed" ]; then skip=1; break; fi ;;
+        esac
     done
     if [ $skip -eq 0 ]; then EXTRAS+=("$rel"); fi
 done
