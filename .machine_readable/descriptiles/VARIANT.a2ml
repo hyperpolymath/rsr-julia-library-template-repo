@@ -89,7 +89,8 @@ paths = [
   ".github/workflows/governance.yml",                   # timeout-minutes invalid on reusable-call job
   ".github/workflows/hypatia-scan.yml",                 # timeout-minutes invalid on reusable-call job
   ".github/workflows/mirror.yml",                       # timeout-minutes invalid on reusable-call job
-  ".github/workflows/secret-scanner.yml",               # timeout-minutes invalid on reusable-call job
+  ".github/workflows/secret-scanner.yml",               # timeout-minutes + missing caller permissions grant
+  ".github/workflows/openssf-compliance.yml",           # template-repo guard for placeholder check
   "container/stapeln/deploy.k9.ncl",                    # K9 magic + pedigree name
   "coordination.k9",                                    # K9 magic + pedigree
   "session/custom-checks.k9",                           # K9 magic + pedigree
