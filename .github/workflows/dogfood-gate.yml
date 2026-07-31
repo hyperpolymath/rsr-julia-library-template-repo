@@ -42,7 +42,11 @@ jobs:
 
       - name: Validate A2ML manifests
         if: steps.detect.outputs.count > 0
-        run: bash .githooks/validate-a2ml.sh
+        uses: hyperpolymath/a2ml-validate-action@e558e79200c06226e7b9477004d6792b9c215b33 # main
+        with:
+          path: '.'
+          strict: 'false'
+
       - name: Write summary
         run: |
           A2ML_COUNT="${{ steps.detect.outputs.count }}"
