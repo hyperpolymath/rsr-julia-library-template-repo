@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: MPL-2.0
+# This workflow is managed by gh actions-lock.
 #
 # Variant Drift Gate — verifies the shared RSR spine of this variant template
 # stays convergent with its parent (rsr-template-repo) at the commit pinned in
@@ -27,7 +28,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout variant (self)
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
 
       - name: Read parent + pin from VARIANT.a2ml
         id: contract
@@ -41,7 +42,7 @@ jobs:
           echo "pin=$pin" >> "$GITHUB_OUTPUT"
 
       - name: Checkout parent at pin
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           repository: ${{ steps.contract.outputs.parent }}
           ref: ${{ steps.contract.outputs.pin }}
