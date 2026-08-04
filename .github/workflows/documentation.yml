@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: MPL-2.0
+# This workflow is managed by gh actions-lock.
 # SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 
 # Documenter build + (main-branch only) GitHub Pages deploy.
@@ -29,13 +30,13 @@ jobs:
     name: Build docs (Documenter, with doctests)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+      - uses: actions/checkout@v7.0.1
 
-      - uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
+      - uses: julia-actions/setup-julia@v3.0.2
         with:
           version: '1.10'
 
-      - uses: julia-actions/cache@b7788abd52452d5bc033d69796e110d9906af4ab # v2
+      - uses: julia-actions/cache@v3.2.0
 
       - name: Build documentation (doctest=true)
         env:
