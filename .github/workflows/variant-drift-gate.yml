@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MPL-2.0
 # This workflow is managed by gh actions-lock.
+# This workflow is managed by gh actions-lock.
 #
 # Variant Drift Gate — verifies the shared RSR spine of this variant template
 # stays convergent with its parent (rsr-template-repo) at the commit pinned in
